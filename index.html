@@ -15,11 +15,77 @@
 
 <body>
 
+	<!-- Jumbotron -->
+	<div class="container">
+	<div class="jumbotron">
+			<h1 class="text-center">Trains, WOO! </h1>
+	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+	<!-- Add a train time -->
+	<div class="col-md-10">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Add a Train</h3>
+					</div>
+					<div class="panel-body">
+						
+						<!-- Sign-up Form (note the various input "types")-->
+						<div class="row">
+				<table id="currentEmployees" class="table">
+					<tr>
+						<th id="employeeName"> Train Name</th>
+						<th id="role"> Destination</th>
+						<th id="startDate"> Frequency (min) </th>
+						<th id="monthsWorked"> Next Arrival </th>
+						<th id="monthlyRate"> Minutes Away</th>
+					</tr>
+				</table>
+			</div>
+
+					</div>
+			</div>
+	</div>
+	<div class="col-md-2"> </div>
+
+	<!-- Table for users to add trains  -->
+	<div class="col-md-10">
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Add a Train</h3>
+					</div>
+					<div class="panel-body">
+						
+						<!-- Sign-up Form (note the various input "types")-->
+						<form role="form">
+						  <div class="form-group">
+						    <label for="text">Train Name</label>
+						    <input type="text" class="form-control" id="nameinput">
+						  </div>
+						  <div class="form-group">
+						    <label for="text">Destination</label>
+						    <input type="text" class="form-control" id="roleinput">
+						  </div>
+						  <div class="form-group">
+						    <label for="text">First Train Time (military time)</label>
+						    <input placeholder="(HH:mm)" ="time" class="form-control" id="startinput">
+						  </div>
+						  <div class="form-group">
+							 <label for="comment">Frequency (min)</label>
+							 <input type="number" class="form-control" id="rateinput"></input>
+						  </div> 
+						  <button type="submit" class="btn btn-default" id="addUser">Submit</button>
+						</form> 
+
+					</div>
+			</div>
+	</div>
+	<div class="col-md-2"> </div>
+
+
+	
 	<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 	<script src="assets/javascript/app.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+	
 
 
 </body>
