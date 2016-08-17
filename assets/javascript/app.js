@@ -11,7 +11,7 @@
 	var database = firebase.database()
 
 	// Initial Values
-	var trainName = "";
+	var name = "";
 	var destination = "";
 	var time = 0;
 	var frequency = "";
@@ -21,17 +21,16 @@
 $("#addUser").on("click", function() {
 
 	// Grabbed values from text boxes
-	trainName = $('#nameinput').val().trim();
-	destination = $('#roleinput').val().trim();
-	time = $('#startinput').val().trim();
-	frequency = $('#rateinput').val().trim();
+	name = $('#newTrain').val().trim();
+	destination = $('#newDestination').val().trim();
+	time = $('#newTime').val().trim();
+	frequency = $('#newFrequency').val().trim();
 
 
 	// Code for handling the push
 	database.ref().push({
 		name: name,
 		destination: destination,
-		// startDate: startDate,
 		time: time,
 		frequency, frequency
 	})
@@ -48,15 +47,15 @@ $("#addUser").on("click", function() {
 		console.log(childSnapshot.val().frequency);
 		// console.log(childSnapshot.val().st);
 
-		var tRow = $("<tr/>");
-		var nameDiv = $("<td/>").html(childSnapshot.val().name);
-		var roleDiv = $("<td/>").html(childSnapshot.val().destination);
-		var theDate = childSnapshot.val().startDate;
-		var dateDiv = $("<td/>").html(moment(theDate).format("MM/DD/YY"));
-		console.log(dateDiv);
-		var monthsDiv = $("<td/>").html(moment().diff(theDate, "months"));
-		tRow.append(nameDiv).append(roleDiv).append(dateDiv).append(monthsDiv);
-		$("#currentEmployees").append(tRow)
+		// var tRow = $("<tr/>");
+		// var nameDiv = $("<td/>").html(childSnapshot.val().name);
+		// var roleDiv = $("<td/>").html(childSnapshot.val().destination);
+		// var theDate = childSnapshot.val().startDate;
+		// var dateDiv = $("<td/>").html(moment(theDate).format("MM/DD/YY"));
+		// console.log(dateDiv);
+		// var monthsDiv = $("<td/>").html(moment().diff(theDate, "months"));
+		// tRow.append(nameDiv).append(roleDiv).append(dateDiv).append(monthsDiv);
+		// $("#currentEmployees").append(tRow)
 
 	})
 
