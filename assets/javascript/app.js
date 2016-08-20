@@ -10,6 +10,7 @@
   // Create a variable to reference the database.
 	var database = firebase.database()
 
+
 	// Initial Values
 	var name = "";
 	var destination = "";
@@ -39,23 +40,31 @@ $("#addUser").on("click", function() {
 	return false;
 });
 
-//Firebase data to print in 'Current Employees Table'
+//Firebase data to print in 'Today's Trains Table'
 	database.ref().on("child_added", function(childSnapshot) {
 		console.log(childSnapshot.val().name);
 		console.log(childSnapshot.val().destination);
 		console.log(childSnapshot.val().time);
 		console.log(childSnapshot.val().frequency);
-		// console.log(childSnapshot.val().st);
+		console.log(moment(convertedDate).format("'LT'"));
+
+		var tRow = $("<tr/>");
+		var nameDiv = $("<td/>").html(childSnapshot.val().name);
+		var destinationDiv = $("<td/>").html(childSnapshot.val().destination);
+		var frequencyDiv = $("<td/>").html(childSnapshot.val().frequency);
+		tRow.append(nameDiv).append(destinationDiv).append(frequencyDiv);
+		$("#todaysTrains").append(tRow)
+
+	})
+
 
 		// var tRow = $("<tr/>");
 		// var nameDiv = $("<td/>").html(childSnapshot.val().name);
-		// var roleDiv = $("<td/>").html(childSnapshot.val().destination);
-		// var theDate = childSnapshot.val().startDate;
+		// var destinationDiv = $("<td/>").html(childSnapshot.val().destination);
+		// var theDate = childSnapshot.val().time;
 		// var dateDiv = $("<td/>").html(moment(theDate).format("MM/DD/YY"));
 		// console.log(dateDiv);
 		// var monthsDiv = $("<td/>").html(moment().diff(theDate, "months"));
 		// tRow.append(nameDiv).append(roleDiv).append(dateDiv).append(monthsDiv);
 		// $("#currentEmployees").append(tRow)
-
-	})
 
