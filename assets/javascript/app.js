@@ -46,7 +46,7 @@ $("#addUser").on("click", function() {
 		console.log(childSnapshot.val().destination);
 		console.log(childSnapshot.val().time);
 		console.log(childSnapshot.val().frequency);
-		console.log(moment(convertedDate).format("'LT'"));
+		// console.log(moment(convertedDate).format("'LT'"));
 
 		var tRow = $("<tr/>");
 		var nameDiv = $("<td/>").html(childSnapshot.val().name);
@@ -68,3 +68,42 @@ $("#addUser").on("click", function() {
 		// tRow.append(nameDiv).append(roleDiv).append(dateDiv).append(monthsDiv);
 		// $("#currentEmployees").append(tRow)
 
+
+database.ref().on('child_added', function(snapshot){
+	console.log(snapshot.val().empName)
+	var tabrow = $("<th>");
+	var namedat = $("<th>");
+	var destdat = $("<th>");
+	var freqdat = $("<th>");
+	var nextdat = $("<th>");
+	var minsdat = $("<th>");
+	var snap = snapshot.val();
+	var firstrun = moment(snap.firstrun, 'nextArrivals');
+	var frequency = snap.frequency;
+	console.log(firstrun)
+	console.log(frequency)
+	var sincefirst = moment().diff(firstrun, 'frequencies');
+	console.log(sincefirst)
+	var sincelast = sincefirst % frequency;
+	console.log(sincelast);
+	var minutesaway = frequency - sincelast;
+	console.log(minutesaway);
+	nextarrival = moment().add(minutesaway, 'minutesAway');
+	console.log(nextarrival);
+	namedat.text(snap.name)
+	destdat.text(snap.destination)
+	freqdat.text(snap.frequency)
+	nextdat.text(moment(nextarrival).format("nextArrivals"));
+	minsdat.text(minutesaway)
+	namedat.appendTo(tabrow)
+	destdat.appendTo(tabrow)
+	freqdat.appendTo(tabrow)
+	nextdat.appendTo(tabrow)
+	minsdat.appendTo(tabrow)
+	tabrow.appendTo($("#todaysTrains"))
+
+	}, function(error){
+		console.log(error.code);
+		console.log(error.message);
+	});
+// });
