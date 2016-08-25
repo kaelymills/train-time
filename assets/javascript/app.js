@@ -78,29 +78,29 @@ database.ref().on('child_added', function(snapshot){
 	var nextdat = $("<th>");
 	var minsdat = $("<th>");
 	var snap = snapshot.val();
-	var firstrun = moment(snap.firstrun, 'nextArrivals');
+	var firstrun = moment(snap.firstrun, 'HH:mm');
 	var frequency = snap.frequency;
 	console.log(firstrun)
 	console.log(frequency)
-	var sincefirst = moment().diff(firstrun, 'frequencies');
+	var sincefirst = moment().diff(firstrun, 'minutes');
 	console.log(sincefirst)
 	var sincelast = sincefirst % frequency;
 	console.log(sincelast);
 	var minutesaway = frequency - sincelast;
 	console.log(minutesaway);
-	nextarrival = moment().add(minutesaway, 'minutesAway');
+	nextarrival = moment().add(minutesaway, 'minutes');
 	console.log(nextarrival);
 	namedat.text(snap.name)
 	destdat.text(snap.destination)
 	freqdat.text(snap.frequency)
-	nextdat.text(moment(nextarrival).format("nextArrivals"));
+	nextdat.text(moment(nextarrival).format("HH:mm"));
 	minsdat.text(minutesaway)
-	namedat.appendTo(tabrow)
-	destdat.appendTo(tabrow)
-	freqdat.appendTo(tabrow)
-	nextdat.appendTo(tabrow)
-	minsdat.appendTo(tabrow)
-	tabrow.appendTo($("#todaysTrains"))
+	namedat.appendTo("#trainNames")
+	destdat.appendTo("#destinations")
+	freqdat.appendTo("#frequencies")
+	nextdat.appendTo("#nextArrivals")
+	minsdat.appendTo("#minutesAway")
+	tabrow.appendTo($("#trainData"))
 
 	}, function(error){
 		console.log(error.code);
